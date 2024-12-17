@@ -1,0 +1,33 @@
+services:
+    php-fpm:
+        build: ./php
+        container_name: php_fpm_server
+        volumes:
+            - ./app:/var/www/html  
+
+
+    apache:
+        build: ./apache
+        container_name: apache_server
+        ports:
+            - "8080:80"  
+        volumes:
+            - ./app:/var/www/html
+        depends_on:
+            - php-fpm
+
+
+    mysql:
+        image: mysql
+        container_name: mysql_db
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: 'azerty'
+            MYSQL_DATABASE: 'ma_base'
+            MYSQL_USER: 'mabase'
+            MYSQL_PASSWORD: 'secret'
+        ports:
+            - "3308:3306"
+        volumes:
+        - ./mysql:/var/lib/mysql  
+
