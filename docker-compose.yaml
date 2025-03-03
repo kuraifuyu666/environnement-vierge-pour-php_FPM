@@ -1,0 +1,27 @@
+services:
+    php-fpm:
+        build: ./php
+        volumes:
+            - ./app:/var/www/html
+
+    apache:
+        build: ./apache
+        ports:
+            - 8080:80
+        depends_on:
+            - php-fpm
+        volumes:
+            - ./app:/var/www/html
+                        
+    mysql:
+        image: mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: 'PASSWORD'
+            MYSQL_DATABASE: 'ma_bdd'
+            MYSQL_USER: 'USER'
+            MYSQL_PASSWORD: 'JOHNDOE'
+        volumes:
+            - ./mysql:/var/lib/mysql
+        ports:
+            - 3308:3306
