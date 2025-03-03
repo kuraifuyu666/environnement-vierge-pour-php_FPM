@@ -21,6 +21,7 @@ Ce projet utilise Docker pour configurer un environnement de développement PHP 
 ├── apache/
 │   ├── Dockerfile       # Configuration Docker pour Apache
 │   └── httpd.conf       # Configuration du VirtualHost Apache
+├── app/ 
 ├── php/
 │   └── Dockerfile       # Configuration Docker pour PHP-FPM
 ├── mysql/               # Volume MySQL pour les données persistantes
@@ -39,7 +40,7 @@ Ce projet utilise Docker pour configurer un environnement de développement PHP 
    docker-compose up --build
    ```
 
-   Cela va créer et lancer les services suivants :
+   Cela va créer et lancer les services suivants et créer ce Dossier :
    - **php-fpm** : Service PHP-FPM pour exécuter le code PHP.
    - **apache** : Serveur Apache servant les fichiers PHP via PHP-FPM.
    - **mysql** : Base de données MySQL avec les informations d'accès spécifiées dans le fichier `docker-compose.yaml`.
